@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from "react";
 import { View,Text, StyleSheet,SafeAreaView,TouchableOpacity } from "react-native";
-import PropTypes from 'prop-types';
 import * as Clipboard from 'expo-clipboard';
 import {lightgray,blue,gray} from './shared/theme';
 import List from './components/list';
@@ -55,6 +54,7 @@ const App = () => {
     new_password = new_password.split(/\s\b(?!\s)/).sort(function(){return 0.5-Math.random()}).join(' ');
 
     setPassword(new_password);
+    Clipboard.setString(new_password);
 
   }
 
