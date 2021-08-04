@@ -1,7 +1,7 @@
+import React from 'react';
 import Title from './title';
 import PropTypes from 'prop-types';
 import {View,Switch} from 'react-native';
-import React,{useState} from 'react';
 import {listItemWrapperStyle} from '../shared/theme';
 
 export default function ListItemSwitch(props){
@@ -17,5 +17,8 @@ export default function ListItemSwitch(props){
   )
 }
 ListItemSwitch.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  data: PropTypes.bool.isRequired,
+  onChange: PropTypes.func.isRequired,
+  icon: PropTypes.string
 };

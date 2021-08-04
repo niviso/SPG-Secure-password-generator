@@ -1,6 +1,6 @@
 import Title from './title';
 import PropTypes from 'prop-types';
-import {View,Switch,Text} from 'react-native';
+import {View,Text} from 'react-native';
 import React,{useState} from 'react';
 import {gray,lightgray,blue,listItemWrapperStyle,textMedium} from '../shared/theme';
 import Slider from '@react-native-community/slider';
@@ -24,3 +24,9 @@ export default function ListItemSlider(props) {
   </View>
 )
 }
+
+ListItemSlider.propTypes = {
+  data: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  min: PropTypes.number
+};

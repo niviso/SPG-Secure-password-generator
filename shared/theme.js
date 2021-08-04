@@ -63,5 +63,12 @@ const passwordWrapperStyle = {
   ...flexCenterStyle
 }
 
+const mainWrapperStyle = {
+    flex: 1,
+    backgroundColor: lightgray,
+    alignItems: "center",
+    justifyContent: "flex-start"
+  }
 
-export {gray,lightgray,white,black,blue,fontSizeSmall,fontSizeMedium,fontSizeLarge,fontFamily,spacingSmall,spacingMedium,spacingLarge,flexCenterStyle,listItemWrapperStyle,passwordWrapperStyle,textSmall,textMedium,textLarge};
+
+export {gray,lightgray,white,black,blue,fontSizeSmall,fontSizeMedium,fontSizeLarge,fontFamily,spacingSmall,spacingMedium,spacingLarge,flexCenterStyle,listItemWrapperStyle,passwordWrapperStyle,textSmall,textMedium,textLarge,mainWrapperStyle};
