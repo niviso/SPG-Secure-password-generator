@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { View,Text, StyleSheet,SafeAreaView,TouchableOpacity } from "react-native";
 import PropTypes from 'prop-types';
 import * as Clipboard from 'expo-clipboard';
@@ -21,11 +21,15 @@ const App = () => {
 
   const [password,setPassword] = useState("");
 
+  useEffect(() => {
+      GeneratePassword();
+  },[]);
+
 
   const GeneratePassword = () => {
     let charset = "";
-    let symbols = '!@#$%^&*()_+~`|}{[]\:;?><,./-=';
-    let password = "";
+    let symbols = "!@#$%^&*()_+~|}´`{[]\:;?><,./-='";
+    let new_password = "";
 
     if(settings.uppercaseLetters){
       charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -37,16 +41,20 @@ const App = () => {
       charset += "0123456789";
     }
     if(settings.symbols){
-      for (var i = 0, n = charset.length; i < settings.minSymbolLength; ++i) {
-        password += symbols.charAt(Math.floor(Math.random() * n));
+      for (var i = 0;i < settings.minSymbolLength; ++i) {
+        new_password += symbols.charAt(Math.floor(Math.random() * symbols.length));
       }
     }
 
-    for (var i = 0, n = charset.length; i < (settings.passwordLength - settings.minSymbolLength); ++i) {
-      password += charset.charAt(Math.floor(Math.random() * n));
+    for (var i = new_password.length; i < settings.passwordLength; i++) {
+      new_password += charset.charAt(Math.floor(Math.random() * charset.length));
     }
 
-    console.log(password);
+
+    //Shuffle
+    new_password = new_password.split(/\s\b(?!\s)/).sort(function(){return 0.5-Math.random()}).join(' ');
+
+    setPassword(new_password);
 
   }
 
@@ -63,7 +71,7 @@ const App = () => {
     </List>
 
     <List title="PASSWORD LENGTH">
-    <ListItemSlider onChange={(e) => setSettings({...settings,passwordLength:e,minSymbolLength: e < settings.minSymbolLength ? e : settings.minSymbolLength})} data={settings.passwordLength}/>
+    <ListItemSlider min={4} onChange={(e) => setSettings({...settings,passwordLength:e,minSymbolLength: e < settings.minSymbolLength ? e : settings.minSymbolLength})} data={settings.passwordLength}/>
     </List>
     <List title="MINIMUM SYMBOLS LENGTH">
       <ListItemSlider onChange={(e) => setSettings({...settings,minSymbolLength:e,passwordLength: e > settings.passwordLength ? e : settings.password,passwordLength: e > settings.passwordLength ? e : settings.passwordLength})} data={settings.minSymbolLength}/>

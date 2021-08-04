@@ -6,12 +6,12 @@ import {gray,lightgray,blue,listItemWrapperStyle,textMedium} from '../shared/the
 import Slider from '@react-native-community/slider';
 
 export default function ListItemSlider(props) {
-  const {data,onChange} = props;
+  const {data,onChange,min=0} = props;
   return(
   <View style={listItemWrapperStyle}>
   <Slider
   style={{width: '90%'}}
-  minimumValue={0}
+  minimumValue={min}
   maximumValue={30}
   value={data}
   minimumTrackTintColor={blue}
