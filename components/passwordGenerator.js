@@ -8,7 +8,30 @@ import {lightgray,blue,gray,flexCenterStyle,spacingSmall,fontSizeMedium,fontSize
 export default function PasswordGenerator(props){
   const {onPress,data} = props;
 
+  const shuffleStr = (s) => {
+  let arr = s.split('');
+  let n = arr.length;
+
+  for(var i=0 ; i<n-1 ; ++i) {
+    var j = Math.floor(Math.random() * n);
+    let temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+
+  s = arr.join('');
+  return s;
+  }
+
   const GeneratePassword = () => {
+
+    if(!data.uppercaseLetters && !data.lowercaseLetters && !data.numbers && !data.symbols){
+      return;
+    }
+    if(!data.uppercaseLetters && !data.lowercaseLetters && !data.numbers && data.symbols && data.minSymbolLength == 0){
+      return;
+    }
+
     let charset = "";
     let symbols = "!@#$%^&*()_+~|}´`{[]\:;?><,./-='";
     let new_password = "";
@@ -24,17 +47,18 @@ export default function PasswordGenerator(props){
     }
     if(data.symbols){
       for (var i = 0;i < data.minSymbolLength; ++i) {
-        new_password += symbols.charAt(Math.floor(Math.random() * symbols.length));
+        let index = Math.floor(Math.random() * symbols.length);
+        new_password += symbols.charAt(index);
       }
     }
 
     for (var i = new_password.length; i < data.passwordLength; i++) {
-      new_password += charset.charAt(Math.floor(Math.random() * charset.length));
+      let index = Math.floor(Math.random() * charset.length);
+      new_password += charset.charAt(index);
     }
 
     //Shuffle
-    new_password = new_password.split(/\s\b(?!\s)/).sort(function(){return 0.5-Math.random()}).join(' ');
-
+    new_password = shuffleStr(new_password);
     onPress(new_password);
     Clipboard.setString(new_password);
     Alert.alert("Password copied to clipboard.");
