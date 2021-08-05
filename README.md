@@ -1,4 +1,4 @@
-# Secure password generator (ios)
+# Kajsa - password generator (ios)
 <div style="display: flex,flex-direction:row">
 <img src="https://user-images.githubusercontent.com/20905714/128330101-bc8103bb-6d59-478a-8857-19a8f9114e5a.png" width="200"/>
 <img src="https://user-images.githubusercontent.com/20905714/128330105-b56000cd-625f-4cf3-92e5-e2b135ce653d.png" width="200"/>
