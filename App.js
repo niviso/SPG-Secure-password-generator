@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native";
+import { StatusBar } from 'expo-status-bar';
 import List from './components/list';
 import ListItemSwitch from './components/listItemSwitch';
 import ListItemSlider from './components/listItemSlider';
@@ -36,6 +37,7 @@ const App = () => {
       </List>
       <PasswordGenerator onPress={setPassword} data={settings}/>
     </SafeAreaView>
+    <StatusBar style="dark"/>
     </>
   );
 }
